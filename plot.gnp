@@ -1,0 +1,12 @@
+# This is general script to plot output
+
+set xrange[0:50000]
+#set yrange[]
+set xlabel "Time Step" font ', 15'
+set ylabel "lambda" offset -5, 0.5 font ', 15'
+set xtics font ', 15'
+set ytics font ', 15'
+set title "lambda restraint at 0.5" font ', 15'
+set border lw 3 
+
+plot "out" us 1 w l
