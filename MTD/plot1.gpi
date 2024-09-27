@@ -1,0 +1,23 @@
+#!/usr/bin/gnuplot
+reset
+set encoding iso_8859_1
+set terminal pdf enhanced color font 'Helvetica, 24' linewidth 2
+set output 'mtd1.pdf'
+
+ # Define the original functions
+ set xr [-1.5:1.5]
+ set yr [0:2]
+ set arrow 1 from graph 0,0 to -1.5,2 lw 2 lc rgb "black"
+ set arrow 2 from graph 0,0 to 1.5,0 lw 2 lc rgb "black"
+ unset border
+ #set border 3 lw 1.5
+ unset tics
+ unset key
+set grid
+ set xlabel "s" font 'Helvetica-Italic'
+ set ylabel "Biased Potential" #font ',15'
+ set colorsequence classic
+ f(x) = (x**2 - 1)**2
+ 
+ g1(x) = 0.15*exp(-78.1*(x+1)**2) + f(x)
+ p g1(x) lw 2,f(x) dt "." lc rgb "black"  lw 3 

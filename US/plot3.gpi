@@ -1,0 +1,22 @@
+#!/usr/bin/gnuplot
+reset
+set encoding iso_8859_1
+set terminal pdf enhanced color font 'Helvetica, 24' linewidth 2
+set output 'us3.pdf'
+
+set arrow 1 from graph 0,0 to -1.5,2 lw 2 lc rgb "black"
+set arrow 2 from graph 0,0 to 1.5,0 lw 2 lc rgb "black" front
+unset border
+set xr [-1.5:1.5]
+set yr [0:2]
+#set border 3 lw 1.5
+unset tics
+unset key
+set xlabel "s" font 'Helvetica-Italics'
+set ylabel "P(s)" font 'Helvetica-Italics 32'
+set colorsequence classic
+f(x) = (x**2 - 1)**2
+g(x) = exp(-f(x))
+
+p f(x) dt "." lc rgb "black" lw 2, \
+  g(x) w l lc rgb "navy" lw 2

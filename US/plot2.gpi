@@ -1,0 +1,47 @@
+#!/usr/bin/gnuplot
+reset
+set encoding iso_8859_1
+set terminal pdf enhanced color font 'Helvetica, 24' linewidth 2
+set output 'us2.pdf'
+
+set arrow 1 from graph 0,0 to -1.5,2 lw 2 lc rgb "black"
+set arrow 2 from graph 0,0 to 1.5,0 lw 2 lc rgb "black" front
+unset border
+set xr [-1.5:1.5]
+set yr [0:2]
+#set border 3 lw 1.5
+unset tics
+unset key
+set xlabel "s" font 'Helvetica-Italics'
+set ylabel "Biased Distribution" #font ',15'
+set colorsequence classic
+f(x) = (x**2 - 1)**2
+g1(x) = 0.5*50*(x+1)**2 + f(x)
+h1(x) = exp(-g1(x))
+g2(x) = 0.5*50*(x+0.75)**2 + f(x)
+h2(x) = exp(-g2(x))
+g3(x) = 0.5*50*(x+0.50)**2 + f(x)
+h3(x) = exp(-g3(x))
+g4(x) = 0.5*50*(x+0.25)**2 + f(x)
+h4(x) = exp(-g4(x))
+g5(x) = 0.5*50*(x)**2 + f(x)
+h5(x) = exp(-g5(x))
+g6(x) = 0.5*50*(x-0.25)**2 + f(x)
+h6(x) = exp(-g6(x))
+g7(x) = 0.5*50*(x-0.5)**2 + f(x)
+h7(x) = exp(-g7(x))
+g8(x) = 0.5*50*(x-0.75)**2 + f(x)
+h8(x) = exp(-g8(x))
+g9(x) = 0.5*50*(x-1)**2 + f(x)
+h9(x) = exp(-g9(x))
+
+p f(x) dt "." lc rgb "black" lw 2 , \
+  h1(x) with lines lw 2 , \
+  h2(x) with lines lw 2 , \
+  h3(x) with lines lw 2 , \
+  h4(x) with lines lw 2 , \
+  h5(x) with lines lw 2 , \
+  h6(x) with lines lw 2 , \
+  h7(x) with lines lw 2 , \
+  h8(x) with lines lw 2 , \
+  h9(x) with lines lw 2 
