@@ -1,0 +1,42 @@
+#!/usr/bin/gnuplot
+reset
+set encoding iso_8859_1
+set terminal pdf enhanced color font 'Helvetica, 24' linewidth 2
+set output 'us1.pdf'
+
+# Define the original functions
+set xr [-1.5:1.5]
+set yr [0:2]
+set arrow 1 from graph 0,0 to -1.5,2 lw 2 lc rgb "black"
+set arrow 2 from graph 0,0 to 1.5,0 lw 2 lc rgb "black"
+unset border
+#set border 3 lw 1.5
+unset tics
+unset key
+set xlabel "s" font 'Helvetica-Italics'
+set ylabel "Biased Potential" #font ',15'
+set colorsequence classic
+f(x) = (x**2 - 1)**2
+g1(x) = 0.5*50*(x+1)**2 + f(x)
+g2(x) = 0.5*50*(x+0.75)**2 + f(x)
+g3(x) = 0.5*50*(x+0.50)**2 + f(x)
+g4(x) = 0.5*50*(x+0.25)**2 + f(x)
+g5(x) = 0.5*50*(x)**2 + f(x)
+g6(x) = 0.5*50*(x-0.25)**2 + f(x)
+g7(x) = 0.5*50*(x-0.5)**2 + f(x)
+g8(x) = 0.5*50*(x-0.75)**2 + f(x)
+g9(x) = 0.5*50*(x-1)**2 + f(x)
+
+# Plot with transformations
+p f(x) dt "." lc rgb "black"  lw 2 , \
+     (g1(x) <= 1 ? g1(x) : NaN) with lines  lw 2 smooth csplines, \
+     (g2(x) <= 1.25 ? g2(x) : NaN) with lines  lw 2 , \
+     (g3(x) <= 1.50 ? g3(x) : NaN) with lines  lw 2 , \
+     (g4(x) <= 1.75 ? g4(x) : NaN) with lines  lw 2 , \
+     (g5(x) <= 2 ? g5(x) : NaN) with lines  lw 2 , \
+     (g6(x) <= 1.75 ? g6(x) : NaN) with lines  lw 2 , \
+     (g7(x) <= 1.5 ? g7(x) : NaN) with lines  lw 2 , \
+     (g8(x) <= 1.25 ? g8(x) : NaN) with lines  lw 2 , \
+     (g9(x) <= 1 ? g9(x) : NaN)  with lines  lw 2 
+# Continue plotting other transformed functions...
+
